@@ -1,22 +1,16 @@
 const result = {};
 
-addEventListener("submit", (a) => {
-    a.preventDefault();
-    for (const i of document.querySelectorAll("input")) {
-        if(i.value === "") {
-            alert("всі поля повинні бути заповнені");
-            result = {};
-            break;
-        }
-        else {
-            result[i.getAttribute("name")] = i.value;
-        }
-    }
-    result();
-    console.log(result)
-});
 
-function reset() {
-    for (const i of document.querySelectorAll("input"))
-    i.value = "";
-};
+
+const form = document.querySelector(".login-form");
+const defaultFromFunction = () => {
+    event.preventDefault();
+    const { email, password } = form.elements
+    const dataForm = {
+        email: email.value,
+        password: password.value,
+    }
+    email.value === "" || password.value === "" ? alert("всі поля повинні бути заповнені") : (console.log(dataForm), form.reset());
+
+}
+form.addEventListener("submit", defaultFromFunction)

@@ -13,16 +13,21 @@ const images = [
   },
 ];
 
-const ul = document.querySelector('.gallery');
-images.forEach(image => {
-  const li = document.createElement('li');
-  const img = document.createElement('img')
-  img.src = image.url;
-  img.alt = image.alt;
-  li.appendChild(img);
-  ul.insertAdjacentElement('beforebegin', li);
-})
-console.log('ul');
+
+
+const ulList = document.querySelector(".gallery");
+const items = markupImg(images)
+
+function markupImg(element) {
+
+  return images.map(({ url, alt }) => {
+    return `
+    <li><img src="${url}" alt="${alt}"></img></li>
+    `
+  }).join(``)
+}
+
+ulList.insertAdjacentHTML("afterbegin", items)
 
 
 
